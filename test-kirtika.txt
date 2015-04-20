@@ -1,3 +1,3 @@
-testing
+Assumptions and Design method for the web scrapping python script:
 
-testing
+- Data mostly from various departments from University of California, Santa Barbara
