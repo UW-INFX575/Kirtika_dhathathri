@@ -52,12 +52,10 @@ def parseGradInfo(text):
     if len(text) == 0:
         return []
       
-    degree = re.findall(r"\bPh.D.\b | \bPhD\b | \bPh.D\b",text)
-    gradyear = re.findall(r'\d+', text)
-    
     #split text
     lst = text.split(',')
-    if len(lst) > 3:
+    
+    if len(lst) >= 3:
         uni = lst[-2].strip()
         gradschool = parseSchool(uni)
     else:
@@ -66,16 +64,17 @@ def parseGradInfo(text):
     ret = []
     graddegree = 'Ph.D'
     
-    if not degree:
-        ret.append('')
+    if( text.find('PhD') >= 0 or text.find('Ph.D') >= 0 or text.find('Ph.D.') >= 0 ):
+        ret.append(unicode(graddegree))
     else:
-        ret.append(unicode(graddegree))        
+        ret.append('')                
         
     if gradschool == -1:
         ret.append('')
     else:
         ret.append(unicode(gradschool))
-        
+       
+    gradyear = re.findall(r'\d+', text)
     if not gradyear:
         ret.append('')
     else:
@@ -191,6 +190,10 @@ for row in soup('table')[0].findAll('tr'):
 #     for item in grad:
 #         fac.append(item)
 
+    fac.append('')
+    fac.append('')
+    fac.append('')
+    
     facultyMain.append(fac);
 
 ##########################
@@ -222,12 +225,14 @@ for row in soup('table')[0].findAll('tr'):
     fac.append(school)
     fac.append(dept)
     
+    # couldnt find information on the grad degree
+    fac.append('')
+    fac.append('')
+    fac.append('')
+    
 #     print fac;
     facultyMain.append(fac);
-    #print data
-    #print data[1].a.string
-    #print data[1].text.replace(data[1].a.string,'')
-    #print data[3].string
+    
     
 ##########################
 
@@ -332,15 +337,20 @@ for row in section:
         
     fac.append(school)
     fac.append(dept)
+    
+    # couldnt find info on grad degree
+    fac.append('')
+    fac.append('')
+    fac.append('')
+    
     facultyMain.append(fac)
 
 ##########################
 
 ######### Finally create and write into csv file
-fp = codecs.open('kirtikaFaculty.csv', 'w')
+fp = codecs.open('UCSBFaculty.csv', 'w')
 writer = UnicodeWriter(fp)
 writer.writerow(columns)
 for faculty in facultyMain:
     writer.writerow(faculty)
 fp.close()
-
