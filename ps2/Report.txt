@@ -1,0 +1,6 @@
+- NLTK python used
+- used stopwords from the nltk package
+- the stopwords are in lower case so i added the .lower() and it removed about 4 more words.
+- tokenzier for punc
+- lemmatizer for stemming - exception that the lemmatizer defaults to noun only
+- file in ascii and does not support unicode character set
