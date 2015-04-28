@@ -1,6 +1,51 @@
-- NLTK python used
+Kirtika Dhathathri
+INFX 575
+Spring 2015
+
+
+Summary:
+Natural language processing of 10 documents by removing stop words, 
+stem words, extracting unigrams, bigrams and trigrams and counting their 
+frequency in each individual document (10 documents) as well as in combined manner.
+
+Libraries used:
+- NLTK 
 - used stopwords from the nltk package
-- the stopwords are in lower case so i added the .lower() and it removed about 4 more words.
 - tokenzier for punc
 - lemmatizer for stemming - exception that the lemmatizer defaults to noun only
-- file in ascii and does not support unicode character set
+- nltk Freqdist used to count the n-gram frequency count
+
+
+Algorithm:
+Here's the step by step process of how the n-gram files were created:
+1. Cleaned the initial document by looping through it and removing following text patterns
+	1.a: remove punctuations
+	1.b: remove stop words (the stopwords list are in lower case so i added the .lower() and it removed about 4 more words.)
+	1.c: remove words shorter than 2 characters (some still remained after stop word removal)
+	1.d: stemming using the lemmatize wordnet ( which defaults to considering all words as nouns)
+	1.e: create one cvs file for each document
+2. For each clean file:
+	2.a: create unigram, bigram and trigram files
+	2.b: extract words from document and create a wordlist
+	2.c: using the wordlist, count unigram frequency and add to the unigram file
+	2.d: using the wordlist, create bigram wordlist and using the bigram wordlist, create bigram frequency count
+	2.e: using the wordlist, create trigram wordlist and using the trigram wordlist, create trigram frequency count
+	2.f: create a combined file and append all the unigram, bigram and trigram wordlist
+3. Combined file:
+	3.a: create output file from n-gram combined file
+	3.b: create frequency count
+
+	
+Assumptions and design decisions:
+- All file operations are assuming its a ascii chars and so this will not support unicode character set
+- stop words: 
+	- the stopword list form nltk package are all in lower case, so i made sure all the words that match the list are deleted by using .lower()
+	- the stop wordlist is not very exhaustive and many of the 2 letter words still remained, so i decided to delete them as well by using len > 2
+- stemming - I used by WordNetLemmatizer rather than other packages for 2 reasons: 
+			 1. We know the input text is English and I can use the wordnet dictionary to find all the lexicons
+			 2. I can easily add POS (part of speech tag) to extend and cover more stemming
+	But there are drawbacks too. Its usually slower than other stemming alogrithms and by default WordNetLemmatizer reads all words as nouns.
+	This is a limitation and some of the words might not be stemmed properly
+- The punctuations are deleted by using regex
+- all the output files are csv format
+
