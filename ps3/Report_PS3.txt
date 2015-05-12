@@ -1,0 +1,31 @@
+1. Run LDA on a sample set
+ lda_sample.py reads number of text documents to find the top 20 topics using python lda 
+ library.
+
+2.  Build a toy data set of text documents and relationships between the text documents
+Files: document01-finance.txt, document02-finance.txt, document03-finance.txt, 
+document04-ee.txt and document05-ee.txt were created using the following sources.
+
+document01-finance: http://business.time.com/2013/10/10/why-we-want-but-cant-have-personal-finance-in-schools/
+document02-finance: http://money.usnews.com/money/personal-finance/articles/2012/10/09/why-most-high-schoolers-dont-know-how-to-manage-their-money
+document03-finance:http://www.usnews.com/education/blogs/high-school-notes/2014/03/03/3-ways-to-engage-high-schoolers-in-personal-finance
+document04-ee: http://en.wikipedia.org/wiki/Electrical_engineering
+document05-ee: http://www.bls.gov/ooh/architecture-and-engineering/electrical-and-electronics-engineers.htm
+
+3.  Calculate the jargon distance between documents using the method in the Jargon Paper
+jargonDist.py calculates the cultural holes across 2 different field documents.
+
+
+4.  Calculate the jargon distance between documents using your own method
+lda_test.py calculates the top 2 topics across the documents
+
+5.  Compare methods (1-2 page paper) 
+compare_methods.txt is the write up to explain the observations with results and comparison 
+of the methods.
+
+
+
+
+
+
+
