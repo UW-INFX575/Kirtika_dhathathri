@@ -1,0 +1,38 @@
+My sources for this assignment are 2 completely different fields : Finance and Electrical Engineering.
+There is no common language between the documents.
+
+I read the paper "Finding Cultural Holes: How Structure and Culture Diverge in
+Networks of Scholarly Communication" and wrote the algorithm to calculate the Shannon entropy
+and KL divergence. As i knew there is very little overlap of the words between the chosen 
+fields, i calculated the teleportation mechanism. I built a corpus codebook using all the 
+available documents.
+I calculated the jargon distance of document01-finance.txt across document05-ee.txt and also
+document01-finance.txt across document03-finance.txt My code can easily calculate other 
+jargon distances as well for comparison
+Here are few of the distance:
+document 1 --> document 1 (jargon distance: 0.08)
+document 1 --> document 3 (jargon distance: 0.38)
+document 1 --> document 5 (jargon distance: 0.41)
+
+These values suggest clearly suggest that the jargon distance increases as the fields and
+the codebook changes. I was expecting to see a major difference between document 3 and 
+document 4 but the happy to see there is an increase in message bits when the document is 
+from another fields.
+
+I also used the python lda method to find topics.Given that there were only 2 different 
+fields, i verified to see top words from the 2 topics appeared using lda.
+
+Topic 0: finance teaching the schools
+Topic 1: and of electrical equipment
+
+I also plotted the results to see the probability distribution of different words in the
+topic. The idea here is that each topic should have a distinct distribution of words.
+The plot clearly shows that the 2 fields have one topic in high probability.
+
+Final thought:
+Cultural holes/jargon distance uses information theory to calculate the estimated message
+length between different fields while lda calculates the different topics (or fields) given
+a huge corpus. Each method can be used to help different requirements.
+Though both algorithms/methods provide insights about the fields, none of them gives a
+full picture. They both complement each other and using both the methods would be very
+useful in learning about different fields and patterns. 
