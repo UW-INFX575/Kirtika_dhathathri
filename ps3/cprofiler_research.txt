@@ -1,0 +1,133 @@
+----- Writeup-----
+According to the profiler output below, the inefficiency in my code is due to the use of dictionaries. Its making 981973 calls to get the values. 
+I am looping through the corpus dictionary for each 10 groups and that is huge computation overhead and adding to the time.
+
+
+
+--- 1321.715729 seconds ---
+         19533706 function calls (19533671 primitive calls) in 1321.713 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       26    0.001    0.000 1321.711   50.835 /Users/kirtika/anaconda/lib/python2.7/site-packages/IPython/core/interactiveshell.py:2798(run_code)
+       10  137.527   13.753 1314.799  131.480 <ipython-input-16-b79d525be44c>:133(createPDwithTeleport)
+   981973  596.658    0.001  596.658    0.001 {method 'values' of 'dict' objects}
+   981970  573.027    0.001  573.027    0.001 {sum}
+        1    0.007    0.007  186.307  186.307 <ipython-input-16-b79d525be44c>:225(<module>)
+        1    0.007    0.007  141.914  141.914 <ipython-input-16-b79d525be44c>:226(<module>)
+        1    0.016    0.016  127.996  127.996 <ipython-input-16-b79d525be44c>:232(<module>)
+        1    0.005    0.005  125.772  125.772 <ipython-input-16-b79d525be44c>:233(<module>)
+        1    0.006    0.006  123.435  123.435 <ipython-input-16-b79d525be44c>:227(<module>)
+        1    0.008    0.008  123.321  123.321 <ipython-input-16-b79d525be44c>:231(<module>)
+        1    0.006    0.006  123.266  123.266 <ipython-input-16-b79d525be44c>:230(<module>)
+        1    0.005    0.005  121.833  121.833 <ipython-input-16-b79d525be44c>:228(<module>)
+        1    0.005    0.005  121.091  121.091 <ipython-input-16-b79d525be44c>:229(<module>)
+        1    0.005    0.005  119.933  119.933 <ipython-input-16-b79d525be44c>:234(<module>)
+       20    0.000    0.000    7.573    0.379 /Users/kirtika/anaconda/lib/python2.7/site-packages/nltk/probability.py:90(__init__)
+       20    0.000    0.000    7.573    0.379 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/collections.py:438(__init__)
+       20    5.416    0.271    7.573    0.379 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/collections.py:501(update)
+       10    1.093    0.109    6.242    0.624 <ipython-input-16-b79d525be44c>:74(createWordList)
+    10304    3.019    0.000    3.019    0.000 {method 'read' of 'file' objects}
+        1    0.000    0.000    2.572    2.572 <ipython-input-16-b79d525be44c>:204(<module>)
+ 13593511    2.184    0.000    2.184    0.000 {method 'get' of 'dict' objects}
+        1    0.000    0.000    1.416    1.416 <ipython-input-16-b79d525be44c>:205(<module>)
+    10304    0.030    0.000    0.852    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/nltk/tokenize/regexp.py:125(tokenize)
+    10304    0.810    0.000    0.810    0.000 {method 'findall' of '_sre.SRE_Pattern' objects}
+        1    0.000    0.000    0.621    0.621 <ipython-input-16-b79d525be44c>:206(<module>)
+        1    0.000    0.000    0.426    0.426 <ipython-input-16-b79d525be44c>:207(<module>)
+        1    0.000    0.000    0.423    0.423 <ipython-input-16-b79d525be44c>:208(<module>)
+  1867354    0.400    0.000    0.400    0.000 {method 'lower' of 'str' objects}
+        3    0.000    0.000    0.395    0.132 <ipython-input-16-b79d525be44c>:179(calcCulturalHole)
+    10304    0.353    0.000    0.353    0.000 {open}
+        1    0.000    0.000    0.259    0.259 <ipython-input-16-b79d525be44c>:209(<module>)
+        3    0.179    0.060    0.246    0.082 <ipython-input-16-b79d525be44c>:166(klDivergence)
+   100010    0.064    0.000    0.211    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/re.py:139(search)
+        1    0.000    0.000    0.206    0.206 <ipython-input-16-b79d525be44c>:211(<module>)
+        1    0.201    0.201    0.201    0.201 <ipython-input-16-b79d525be44c>:214(<module>)
+       10    0.169    0.017    0.169    0.017 {posix.listdir}
+        3    0.090    0.030    0.149    0.050 <ipython-input-16-b79d525be44c>:155(shannonEntropy)
+        1    0.000    0.000    0.140    0.140 <ipython-input-16-b79d525be44c>:242(<module>)
+        1    0.000    0.000    0.135    0.135 <ipython-input-16-b79d525be44c>:241(<module>)
+        1    0.000    0.000    0.124    0.124 <ipython-input-16-b79d525be44c>:212(<module>)
+        1    0.000    0.000    0.121    0.121 <ipython-input-16-b79d525be44c>:240(<module>)
+   497112    0.117    0.000    0.117    0.000 {math.log}
+   100010    0.082    0.000    0.111    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/re.py:226(_compile)
+  1227205    0.105    0.000    0.105    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.100    0.100 <ipython-input-16-b79d525be44c>:210(<module>)
+        1    0.000    0.000    0.095    0.095 <ipython-input-16-b79d525be44c>:213(<module>)
+    10304    0.024    0.000    0.039    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/posixpath.py:68(join)
+   100010    0.036    0.000    0.036    0.000 {method 'search' of '_sre.SRE_Pattern' objects}
+       13    0.024    0.002    0.024    0.002 {method 'keys' of 'dict' objects}
+    10304    0.010    0.000    0.012    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/nltk/tokenize/regexp.py:115(_check_regexp)
+    10304    0.011    0.000    0.011    0.000 {method 'startswith' of 'str' objects}
+    10304    0.004    0.000    0.004    0.000 {method 'endswith' of 'str' objects}
+       20    0.000    0.000    0.002    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_compile.py:493(compile)
+       26    0.000    0.000    0.002    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/codeop.py:132(__call__)
+       10    0.000    0.000    0.002    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/nltk/internals.py:33(compile_regexp_to_noncapturing)
+       26    0.002    0.000    0.002    0.000 {compile}
+       20    0.000    0.000    0.002    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:675(parse)
+       20    0.000    0.000    0.001    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_compile.py:478(_code)
+       20    0.000    0.000    0.001    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:301(_parse_sub)
+       20    0.001    0.000    0.001    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:379(_parse)
+       20    0.000    0.000    0.001    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_compile.py:359(_compile_info)
+      132    0.000    0.000    0.001    0.000 {isinstance}
+    30/20    0.000    0.000    0.001    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_compile.py:32(_compile)
+       20    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/abc.py:128(__instancecheck__)
+      141    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:182(__next)
+    40/30    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:140(getwidth)
+      121    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:201(get)
+       20    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:178(__init__)
+       60    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:130(__getitem__)
+       10    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/nltk/tokenize/regexp.py:104(__init__)
+       10    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_compile.py:178(_compile_charset)
+       26    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/IPython/core/hooks.py:122(__call__)
+      3/1    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/abc.py:148(__subclasscheck__)
+       42    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_weakrefset.py:68(__contains__)
+       33    0.000    0.000    0.000    0.000 {getattr}
+  493/483    0.000    0.000    0.000    0.000 {len}
+       26    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/IPython/utils/ipstruct.py:125(__getattr__)
+       71    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:138(append)
+       20    0.000    0.000    0.000    0.000 {_sre.compile}
+      4/1    0.000    0.000    0.000    0.000 {issubclass}
+       10    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/nltk/internals.py:41(convert_regexp_to_noncapturing_parsed)
+       10    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_compile.py:207(_optimize_charset)
+       30    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_compile.py:472(isstring)
+        1    0.000    0.000    0.000    0.000 <ipython-input-16-b79d525be44c>:278(<module>)
+       10    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_compile.py:354(_simple)
+       26    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/IPython/core/interactiveshell.py:1008(user_global_ns)
+        2    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/IPython/kernel/zmq/iostream.py:178(write)
+       60    0.000    0.000    0.000    0.000 {min}
+        5    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_weakrefset.py:58(__iter__)
+       40    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:126(__len__)
+       30    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:90(__init__)
+       20    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:67(__init__)
+       10    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:257(_escape)
+       30    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:195(match)
+        2    0.000    0.000    0.000    0.000 {method 'decode' of 'str' objects}
+       61    0.000    0.000    0.000    0.000 {ord}
+        3    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_abcoll.py:98(__subclasshook__)
+       20    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+       26    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/IPython/core/hooks.py:202(pre_run_code_hook)
+        2    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/encodings/utf_8.py:15(decode)
+        3    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_weakrefset.py:20(__enter__)
+       10    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/sre_parse.py:134(__setitem__)
+        3    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_weakrefset.py:26(__exit__)
+        2    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/IPython/kernel/zmq/iostream.py:88(_check_mp_mode)
+        3    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_weakrefset.py:36(__init__)
+       20    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 {_codecs.utf_8_decode}
+        2    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/lib/python2.7/site-packages/IPython/kernel/zmq/iostream.py:79(_is_master_process)
+        3    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_weakrefset.py:81(add)
+        1    0.000    0.000    0.000    0.000 <ipython-input-16-b79d525be44c>:281(<module>)
+        2    0.000    0.000    0.000    0.000 {method 'write' of '_io.StringIO' objects}
+        3    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_weakrefset.py:16(__init__)
+        3    0.000    0.000    0.000    0.000 {method '__subclasses__' of 'type' objects}
+        3    0.000    0.000    0.000    0.000 /Users/kirtika/anaconda/python.app/Contents/lib/python2.7/_weakrefset.py:52(_commit_removals)
+        6    0.000    0.000    0.000    0.000 {method 'add' of 'set' objects}
+        2    0.000    0.000    0.000    0.000 {posix.getpid}
+        3    0.000    0.000    0.000    0.000 {time.time}
+        3    0.000    0.000    0.000    0.000 {method 'remove' of 'set' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
