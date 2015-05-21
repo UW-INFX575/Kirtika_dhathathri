@@ -1,0 +1,5 @@
+updates to the new jargon method:
+- modularize the code
+- add functions to read from the abstracts and group files
+- changed the calculation based on alpha (teleport value)
+- tweaked the shannon and kl-divergence algorithm 
